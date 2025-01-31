@@ -4,31 +4,31 @@
     ref="dropDownRef"
   >
     <li
-      class="cursor-pointer hover:font-medium w-full pt-2 h-full px-[10px]"
+      class="cursor-pointer hover:font-medium hover:text-teal-darker w-full pt-2 h-full px-[10px]"
       @click="emits('onSelect', 'bez tytułu')"
     >
       bez tytułu
     </li>
     <li
-      class="cursor-pointer hover:font-medium w-full h-full px-[10px]"
+      class="cursor-pointer hover:font-medium hover:text-teal-darker w-full h-full px-[10px]"
       @click="emits('onSelect', 'Pan')"
     >
       Pan
     </li>
     <li
-      class="cursor-pointer hover:font-medium w-full h-full px-[10px]"
+      class="cursor-pointer hover:font-medium hover:text-teal-darker w-full h-full px-[10px]"
       @click="emits('onSelect', 'Pani')"
     >
       Pani
     </li>
     <li
-      class="cursor-pointer hover:font-medium w-full h-full px-[10px]"
+      class="cursor-pointer hover:font-medium hover:text-teal-darker w-full h-full px-[10px]"
       @click="emits('onSelect', 'Dr')"
     >
       Dr
     </li>
     <li
-      class="cursor-pointer hover:font-medium w-full pb-2 h-full px-[10px]"
+      class="cursor-pointer hover:font-medium hover:text-teal-darker w-full pb-2 h-full px-[10px]"
       @click="emits('onSelect', 'Prof.')"
     >
       Prof.

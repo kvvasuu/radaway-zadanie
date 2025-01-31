@@ -5,13 +5,13 @@
   >
     <header class="w-full flex justify-center items-center gap-6">
       <hr class="grow h-[2px] border-none bg-teal-lighter" />
-      <h1 class="font-extrabold text-[34px] text-center text-teal uppercase">
+      <h1 class="font-extrabold text-h1 text-center text-teal uppercase">
         Formularz zgłoszeniowy
       </h1>
       <hr class="grow h-[2px] border-none bg-teal-lighter" />
     </header>
     <fieldset class="flex flex-col items-start gap-6 w-full" id="personal-data">
-      <h2 class="font-bold block text-[26px] text-gray-darker">Dane osobowe</h2>
+      <h2 class="font-bold block text-h2 text-gray-darker">Dane osobowe</h2>
       <div
         class="flex flex-col md:flex-row items-start md:items-center justify-start gap-5 md:gap-[10px] w-full text-gray-darker"
       >
@@ -102,7 +102,7 @@
       class="flex flex-col items-start gap-6 w-full"
       id="travel-destination"
     >
-      <h2 class="font-bold block text-[26px] text-gray-darker">Cel podróży</h2>
+      <h2 class="font-bold block text-h2 text-gray-darker">Cel podróży</h2>
 
       <h4 class="text-black">
         Proszę wybrać miejsce docelowe. <span class="text-red-500">*</span>
@@ -117,7 +117,7 @@
       </div>
     </fieldset>
     <fieldset class="flex flex-col items-start gap-6 w-full" id="consents">
-      <h2 class="font-bold block text-[26px] text-gray-darker">Zgody</h2>
+      <h2 class="font-bold block text-h2 text-gray-darker">Zgody</h2>
 
       <label
         class="inline-flex w-full gap-6 items-center justify-start cursor-pointer select-none"
@@ -126,8 +126,8 @@
           type="checkbox"
           class="sr-only peer"
           v-model="consentData"
-          true-value="yes"
-          false-value=""
+          true-value="tak"
+          false-value="nie"
           name="consent-data-checkbox"
         />
         <div
@@ -165,8 +165,8 @@
           type="checkbox"
           class="sr-only peer"
           v-model="consentMarketing"
-          true-value="yes"
-          false-value=""
+          true-value="tak"
+          false-value="nie"
           name="consent-marketing-checkbox"
         />
         <div
@@ -213,6 +213,21 @@
       Wyślij Zgłoszenie
     </button>
   </form>
+  <Transition name="fade">
+    <Teleport to="body">
+      <SummaryModal
+        v-if="isSummaryModalVisible"
+        :data="{
+          title,
+          firstName,
+          lastName,
+          travelDestination,
+          consentMarketing,
+        }"
+        @close="isSummaryModalVisible = false"
+      ></SummaryModal>
+    </Teleport>
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -220,9 +235,10 @@ import { ref, computed } from "vue";
 import type { Title } from "./main.ts";
 import DropDown from "./components/DropDown.vue";
 import Card from "./components/Card.vue";
+import SummaryModal from "./components/SummaryModal.vue";
 import { PLACES } from "./main.ts";
 
-const title = ref<Title | null>(null);
+const title = ref<Title | "">("");
 const selectTitle = (selectedTitle: Title) => {
   title.value = selectedTitle;
   isDropdownVisible.value = false;
@@ -237,15 +253,15 @@ const formatName = (name: string) => name.replace(/[^\p{L}]/gu, "");
 
 const travelDestination = ref("");
 
-const consentData = ref<"yes" | "">("");
-const consentMarketing = ref<"yes" | "">("");
+const consentData = ref<"tak" | "nie">("nie");
+const consentMarketing = ref<"tak" | "nie">("nie");
 
 const isFormValid = computed(() => {
   if (
     firstName.value.length < 3 ||
     lastName.value.length < 3 ||
     !title.value ||
-    !consentData.value ||
+    consentData.value === "nie" ||
     !travelDestination.value
   ) {
     return false;

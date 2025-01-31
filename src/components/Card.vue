@@ -14,8 +14,7 @@
     />
 
     <div
-      class="absolute flex box-content items-center justify-center top-[10px] right-[10px] w-4 h-4 bg-white border-[1px] rounded-md transition-all duration-300 z-10"
-      :class="!isChecked ? 'border-gray-mid' : 'border-teal'"
+      class="absolute flex box-content items-center justify-center top-[10px] right-[10px] w-4 h-4 bg-white border-[1px] rounded-md transition-all duration-300 z-10 border-gray-mid peer-checked:border-teal"
     >
       <div
         class="w-2 h-2 bg-teal rounded-xs transition-all duration-300"
@@ -26,13 +25,11 @@
     <img
       :src="`/${place.name.toLowerCase()}.png`"
       :alt="place.name"
-      class="w-full h-[195px] select-none"
+      class="w-full h-[195px] select-none transition-all duration-300 grayscale peer-checked:grayscale-0"
       draggable="false"
-      :class="{ grayscale: !isChecked }"
     />
     <article
-      class="flex flex-col items-start gap-[10px] py-[10px] px-[15px] transition-all duration-300"
-      :class="!isChecked ? 'text-black' : 'text-teal-dark'"
+      class="flex flex-col items-start gap-[10px] py-[10px] px-[15px] transition-all duration-300 text-black peer-checked:text-teal-dark"
     >
       <h4 class="font-extrabold uppercase">
         {{ place.name }}
