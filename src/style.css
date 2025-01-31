@@ -8,6 +8,7 @@
   --color-teal-light: #dcf9f8;
   --color-teal-lighter: #9beeea;
   --color-teal-dark: #0a5450;
+  --color-teal-darker: #19a69f;
   --text-xxs: 10px;
 }
 
@@ -33,4 +34,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
