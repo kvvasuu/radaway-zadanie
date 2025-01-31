@@ -26,7 +26,7 @@
           </Transition>
           <label
             for="title"
-            class="text-xxs absolute -top-2 left-2 bg-white z-10 px-[5px]"
+            class="text-xxs absolute -top-2 left-2 bg-white z-10 px-[5px] select-none"
             >Tytuł <span class="text-red-500">*</span></label
           >
           <button
@@ -47,7 +47,8 @@
               {{ title }}
             </div>
             <div
-              class="absolute h-full flex items-center justify-center right-3 top-0"
+              class="absolute h-full flex items-center justify-center right-3 top-0 transition-all duration-300"
+              :class="{ 'rotate-180': isDropdownVisible }"
             >
               <svg
                 width="14"
@@ -64,12 +65,13 @@
         <div class="w-full h-10 relative text-gray-mid">
           <label
             for="title"
-            class="text-xxs absolute -top-2 left-2 bg-white z-10 px-[5px]"
+            class="text-xxs absolute -top-2 left-2 bg-white z-10 px-[5px] select-none"
             >Imię <span class="text-red-500">*</span></label
           >
           <input
             id="first-name"
             name="first-name"
+            autocomplete="off"
             v-model.trim="firstName"
             @change="() => (firstName = formatName(firstName))"
             class="w-full h-full border-[1px] border-gray-mid rounded-lg relative px-[13px] py-2.5 placeholder:italic placeholder:text-gray-mid outline-none text-black"
@@ -80,12 +82,13 @@
         <div class="w-full h-10 relative text-gray-mid">
           <label
             for="title"
-            class="text-xxs absolute -top-2 left-2 bg-white z-10 px-[5px]"
+            class="text-xxs absolute -top-2 left-2 bg-white z-10 px-[5px] select-none"
             >Nazwisko <span class="text-red-500">*</span></label
           >
           <input
             id="last-name"
             name="last-name"
+            autocomplete="off"
             v-model.trim="lastName"
             @change="() => (lastName = formatName(lastName))"
             class="w-full h-full border-[1px] border-gray-mid rounded-lg relative px-[13px] py-2.5 placeholder:italic placeholder:text-gray-mid outline-none text-black"
@@ -117,7 +120,7 @@
       <h2 class="font-bold block text-[26px] text-gray-darker">Zgody</h2>
 
       <label
-        class="inline-flex w-full gap-6 items-center justify-start cursor-pointer"
+        class="inline-flex w-full gap-6 items-center justify-start cursor-pointer select-none"
       >
         <input
           type="checkbox"
@@ -125,6 +128,7 @@
           v-model="consentData"
           true-value="yes"
           false-value=""
+          name="consent-data-checkbox"
         />
         <div
           class="shrink-0 relative w-7 h-[18px] bg-white border-[1px] border-gray-mid rounded-full peer peer-checked:after:translate-x-[calc(100%-4px)] after:content-[''] after:absolute after:top-[calc(50%-7px)] after:start-[1px] after:bg-gray-mid after:rounded-full after:h-[14px] after:w-[14px] after:transition-all after:duration-300 transition-all duration-300 peer-checked:after:bg-teal peer-checked:border-teal"
@@ -155,7 +159,7 @@
       </label>
 
       <label
-        class="inline-flex w-full gap-6 items-center justify-start cursor-pointer"
+        class="inline-flex w-full gap-6 items-center justify-start cursor-pointer select-none"
       >
         <input
           type="checkbox"
@@ -163,6 +167,7 @@
           v-model="consentMarketing"
           true-value="yes"
           false-value=""
+          name="consent-marketing-checkbox"
         />
         <div
           class="shrink-0 relative w-7 h-[18px] bg-white border-[1px] border-gray-mid rounded-full peer peer-checked:after:translate-x-[calc(100%-4px)] after:content-[''] after:absolute after:top-[calc(50%-7px)] after:start-[1px] after:bg-gray-mid after:rounded-full after:h-[14px] after:w-[14px] after:transition-all after:duration-300 transition-all duration-300 peer-checked:after:bg-teal peer-checked:border-teal"

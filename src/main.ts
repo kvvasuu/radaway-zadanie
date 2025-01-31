@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 
-export type Title = "bez tytułu" | "Pan" | "Pani" | "Dr" | "Prof";
+export type Title = "bez tytułu" | "Pan" | "Pani" | "Dr" | "Prof.";
 export interface Place {
   name: string;
   description: string;

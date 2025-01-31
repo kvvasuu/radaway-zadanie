@@ -29,7 +29,7 @@
     </li>
     <li
       class="cursor-pointer hover:font-medium w-full pb-2 h-full px-[10px]"
-      @click="emits('onSelect', 'Prof')"
+      @click="emits('onSelect', 'Prof.')"
     >
       Prof.
     </li>

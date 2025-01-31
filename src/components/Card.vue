@@ -1,6 +1,6 @@
 <template>
   <label
-    class="w-[235px] rounded-lg flex flex-col items-center justify-start relative overflow-hidden transition-all duration-300 cursor-pointer"
+    class="w-[235px] rounded-lg flex flex-col items-center justify-start relative overflow-hidden transition-all duration-300 cursor-pointer select-none"
     :class="
       !isChecked ? 'bg-gray-light shadow-small' : 'bg-teal-light shadow-big'
     "
@@ -10,6 +10,7 @@
       v-model="model"
       :value="place.name"
       class="sr-only peer"
+      :name="place.name + '-radio-element'"
     />
 
     <div
