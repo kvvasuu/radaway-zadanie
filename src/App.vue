@@ -5,15 +5,15 @@
   >
     <header class="w-full flex justify-center items-center gap-6">
       <hr class="grow border-[1px] border-teal-lighter" />
-      <h1 class="font-extrabold text-4xl text-center text-teal">
-        FORMULARZ ZGŁOSZENIOWY
+      <h1 class="font-extrabold text-4xl text-center text-teal uppercase">
+        Formularz zgłoszeniowy
       </h1>
       <hr class="grow border-[1px] border-teal-lighter" />
     </header>
     <fieldset class="flex flex-col items-start gap-6 w-full">
       <h2 class="font-bold block text-[26px] text-gray-darker">Dane osobowe</h2>
       <div
-        class="flex items-center justify-start gap-[10px] w-full text-gray-darker"
+        class="flex flex-col md:flex-row items-start md:items-center justify-start gap-5 md:gap-[10px] w-full text-gray-darker"
       >
         <div class="w-[125px] shrink-0 h-10 relative text-gray-mid">
           <label
@@ -54,12 +54,13 @@
           <input
             id="first-name"
             name="first-name"
-            :value="firstName"
+            v-model="firstName"
+            @change="() => (firstName = formatName(firstName))"
             class="w-full h-full border-[1px] border-gray-mid rounded-lg relative px-[13px] py-2.5 placeholder:italic placeholder:text-gray-mid outline-none text-black"
             type="text"
             placeholder="Imię"
-          >
-          </input>
+            pattern="[A-Za-z]"
+          />
         </div>
         <div class="w-full h-10 relative text-gray-mid">
           <label
@@ -70,27 +71,61 @@
           <input
             id="last-name"
             name="last-name"
-            :value="lastName"
-            @change=""
+            v-model="lastName"
+            @change="() => (lastName = formatName(lastName))"
             class="w-full h-full border-[1px] border-gray-mid rounded-lg relative px-[13px] py-2.5 placeholder:italic placeholder:text-gray-mid outline-none text-black"
             type="text"
             placeholder="Nazwisko"
-          >
-          </input>
+            pattern="[A-Za-z]"
+          />
         </div>
       </div>
     </fieldset>
+    <fieldset class="flex flex-col items-start gap-6 w-full">
+      <h2 class="font-bold block text-[26px] text-gray-darker">Zgody</h2>
+      <div
+        class="flex items-center justify-start gap-[10px] w-full text-gray-darker"
+      ></div>
+    </fieldset>
+    <hr class="w-full border-[1px] border-teal-lighter" />
+    <button
+      class="uppercase rounded-md py-[10px] px-[13px] text-white text-sm font-bold transition-colors duration-300"
+      :class="
+        isFormValid
+          ? 'bg-teal hover:bg-teal-dark cursor-pointer'
+          : 'cursor-not-allowed bg-gray-lighter'
+      "
+      :disabled="!isFormValid"
+      @click.prevent="submitForm"
+    >
+      Wyślij Zgłoszenie
+    </button>
   </form>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import { ref, computed } from "vue";
+import { Title } from "./main";
 
-const firstName = ref('');
-const lastName = ref('');
+const title = ref<Title | null>("Pan");
+const firstName = ref("");
+const lastName = ref("");
 
-const formatFirstName = () =>{
-  firstName.value = 
-}
+const formatName = (name: string) => name.replace(/[^\p{L}]/gu, "");
 
+const isFormValid = computed(() => {
+  if (firstName.value.length < 3 || lastName.value.length < 3 || !title.value) {
+    return false;
+  } else {
+    return true;
+  }
+});
+
+const isSummaryModalVisible = ref(false);
+
+const submitForm = () => {
+  if (isFormValid.value) {
+    isSummaryModalVisible.value = true;
+  }
+};
 </script>
