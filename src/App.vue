@@ -5,7 +5,7 @@
   >
     <header class="w-full flex justify-center items-center gap-6">
       <hr class="grow h-[2px] border-none bg-teal-lighter" />
-      <h1 class="font-extrabold text-4xl text-center text-teal uppercase">
+      <h1 class="font-extrabold text-[34px] text-center text-teal uppercase">
         Formularz zgłoszeniowy
       </h1>
       <hr class="grow h-[2px] border-none bg-teal-lighter" />
@@ -70,7 +70,7 @@
           <input
             id="first-name"
             name="first-name"
-            v-model="firstName"
+            v-model.trim="firstName"
             @change="() => (firstName = formatName(firstName))"
             class="w-full h-full border-[1px] border-gray-mid rounded-lg relative px-[13px] py-2.5 placeholder:italic placeholder:text-gray-mid outline-none text-black"
             type="text"
@@ -86,7 +86,7 @@
           <input
             id="last-name"
             name="last-name"
-            v-model="lastName"
+            v-model.trim="lastName"
             @change="() => (lastName = formatName(lastName))"
             class="w-full h-full border-[1px] border-gray-mid rounded-lg relative px-[13px] py-2.5 placeholder:italic placeholder:text-gray-mid outline-none text-black"
             type="text"
@@ -105,7 +105,13 @@
         Proszę wybrać miejsce docelowe. <span class="text-red-500">*</span>
       </h4>
 
-      <div class="w-full justify-between"></div>
+      <div class="w-full flex justify-between">
+        <Card
+          :place="place"
+          v-model="travelDestination"
+          v-for="place in PLACES"
+        ></Card>
+      </div>
     </fieldset>
     <fieldset class="flex flex-col items-start gap-6 w-full" id="consents">
       <h2 class="font-bold block text-[26px] text-gray-darker">Zgody</h2>
@@ -208,6 +214,8 @@
 import { ref, computed } from "vue";
 import type { Title } from "./main.ts";
 import DropDown from "./components/DropDown.vue";
+import Card from "./components/Card.vue";
+import { PLACES } from "./main.ts";
 
 const title = ref<Title | null>(null);
 const selectTitle = (selectedTitle: Title) => {
@@ -222,6 +230,8 @@ const lastName = ref("");
 
 const formatName = (name: string) => name.replace(/[^\p{L}]/gu, "");
 
+const travelDestination = ref("");
+
 const consentData = ref<"yes" | "">("");
 const consentMarketing = ref<"yes" | "">("");
 
@@ -230,7 +240,8 @@ const isFormValid = computed(() => {
     firstName.value.length < 3 ||
     lastName.value.length < 3 ||
     !title.value ||
-    !consentData.value
+    !consentData.value ||
+    !travelDestination.value
   ) {
     return false;
   } else {

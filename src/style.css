@@ -2,6 +2,7 @@
 
 @theme {
   --color-gray-lighter: #e0e0e0;
+  --color-gray-light: #f5f5f5;
   --color-gray-mid: #b8b8b8;
   --color-gray-darker: #8b8b8b;
   --color-teal: #1fd5cc;
@@ -10,6 +11,8 @@
   --color-teal-dark: #0a5450;
   --color-teal-darker: #19a69f;
   --text-xxs: 10px;
+  --shadow-small: 2px 2px 5px #00000026;
+  --shadow-big: 6px 6px 11px #0000001f;
 }
 
 :root {
@@ -25,7 +28,7 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #app {
