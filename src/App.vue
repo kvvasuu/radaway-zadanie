@@ -108,7 +108,7 @@
         Proszę wybrać miejsce docelowe. <span class="text-red-500">*</span>
       </h4>
 
-      <div class="w-full flex justify-between">
+      <div class="w-full flex justify-between gap-2">
         <Card
           :place="place"
           v-model="travelDestination"

@@ -28,26 +28,26 @@
       <h2 class="text-black font-bold text-h2 mb-4">
         Potwierdzenie wysłania formularza
       </h2>
-      <ul class="text-black w-full">
-        <li class="w-full flex">
+      <ul class="text-black w-full flex flex-col gap-[5px]">
+        <li class="w-full flex gap-[10px]">
           <div class="w-1/2 text-right font-bold">Tytuł:</div>
-          <div class="w-1/2 ml-2">{{ data.title }}</div>
+          <div class="w-1/2">{{ data.title }}</div>
         </li>
-        <li class="w-full flex">
+        <li class="w-full flex gap-[10px]">
           <div class="w-1/2 text-right font-bold">Imię:</div>
-          <div class="w-1/2 ml-2">{{ data.firstName }}</div>
+          <div class="w-1/2">{{ data.firstName }}</div>
         </li>
-        <li class="w-full flex">
+        <li class="w-full flex gap-[10px]">
           <div class="w-1/2 text-right font-bold">Nazwisko:</div>
-          <div class="w-1/2 ml-2">{{ data.lastName }}</div>
+          <div class="w-1/2">{{ data.lastName }}</div>
         </li>
-        <li class="w-full flex">
+        <li class="w-full flex gap-[10px]">
           <div class="w-1/2 text-right font-bold">Cel podróży:</div>
-          <div class="w-1/2 ml-2">{{ data.travelDestination }}</div>
+          <div class="w-1/2">{{ data.travelDestination }}</div>
         </li>
-        <li class="w-full flex">
+        <li class="w-full flex gap-[10px]">
           <div class="w-1/2 text-right font-bold">Zgoda marketingowa:</div>
-          <div class="w-1/2 ml-2">{{ data.consentMarketing }}</div>
+          <div class="w-1/2">{{ data.consentMarketing }}</div>
         </li>
       </ul>
     </div>
