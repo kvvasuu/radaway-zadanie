@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="w-[125px] bg-white text-black border-[1px] border-gray-mid rounded-lg"
+    class="w-[125px] bg-white text-black border-[1px] border-gray-mid rounded-lg z-20"
     ref="dropDownRef"
   >
     <li

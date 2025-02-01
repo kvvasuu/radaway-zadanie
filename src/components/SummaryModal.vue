@@ -5,7 +5,7 @@
     @click="close"
   >
     <div
-      class="flex flex-col items-center gap-[10px] bg-white rounded-lg px-[25px] py-[35px] shadow-[-4px_4px_4px_#00000026] z-30 relative"
+      class="flex flex-col items-center gap-[10px] bg-white rounded-lg px-4 sm:px-[25px] py-[35px] shadow-[-4px_4px_4px_#00000026] z-30 relative mx-2"
       @click.stop=""
     >
       <button
@@ -25,7 +25,7 @@
           />
         </svg>
       </button>
-      <h2 class="text-black font-bold text-h2 mb-4">
+      <h2 class="text-black font-bold text-h2 mb-4 text-center">
         Potwierdzenie wysłania formularza
       </h2>
       <ul class="text-black w-full flex flex-col gap-[5px]">
